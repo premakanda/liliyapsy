@@ -1,0 +1,343 @@
+.section {
+  padding: clamp(48px, 4.5vw, 68px) 0;
+  background:
+    radial-gradient(ellipse at 100% 0, #f2e4fc, transparent 52%),
+    radial-gradient(ellipse at 0 100%, #f3fcca90, transparent 30%), var(--paper);
+  font-family: "Inter Variable", "Manrope Variable", sans-serif;
+  scroll-margin-top: 96px;
+}
+.container {
+  width: min(100% - 36px, 1320px);
+  margin-inline: auto;
+}
+.heading {
+  position: relative;
+  width: fit-content;
+  margin: 0 0 30px;
+  padding-bottom: 20px;
+  font-size: clamp(38px, 4.5vw, 64px);
+  line-height: 1.05;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 180px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--lime);
+  transform: rotate(-1deg);
+}
+.introduction {
+  font-size: clamp(18px, 1.67vw, 24px);
+  line-height: 1.45;
+  color: #452263;
+  margin: 0 0 44px;
+  max-width: 1240px;
+}
+.layout {
+  display: grid;
+  gap: 24px;
+  align-items: stretch;
+}
+.profile {
+  min-width: 0;
+  padding: 24px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #e9d0f6, #f4e9fa);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.portraitFrame {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 312 / 347;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.portraitFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.7) translateY(-8px);
+  transform-origin: 52% 0;
+}
+.profile h3 {
+  font-size: clamp(22px, 1.9vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 24px 0 4px;
+}
+.role {
+  margin: 0;
+  color: #7944a3;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+.socials {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+.socials > * {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: #d1f477;
+}
+.socials > a:hover {
+  background: var(--lime);
+}
+.socials img {
+  width: 25px;
+  height: 25px;
+}
+.portraitNote {
+  margin: auto 0 0;
+  padding-top: 24px;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+  color: #744d92;
+}
+.content {
+  min-width: 0;
+  padding: 24px 20px;
+  border-radius: 32px;
+  background: white;
+  box-shadow: 0 12px 35px #4b168d05;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tabs button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 17px;
+  padding: 14px 16px;
+  background: #f1e5fa;
+  color: #5d248a;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+.tabs button[aria-selected="true"] {
+  background: #702394;
+  color: white;
+  box-shadow: 0 8px 20px #4b168d12;
+}
+.tabs button:hover:not([aria-selected="true"]) {
+  background: var(--lilac);
+}
+.bookingLink {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  color: var(--purple);
+  padding: 16px 22px;
+  border-radius: 18px;
+  min-height: 52px;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.bookingLink:hover {
+  background: #d4fc77;
+}
+.bookingLink img {
+  width: 20px;
+  height: 20px;
+  transform: rotate(-45deg);
+}
+.panel {
+  margin-top: 36px;
+}
+.panel:focus-visible {
+  outline: 3px solid var(--purple-medium);
+  outline-offset: 8px;
+  border-radius: 8px;
+}
+.panel h3 {
+  margin: 0 0 24px;
+  font-size: clamp(25px, 2.3vw, 34px);
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.approachLabel {
+  color: #8c51ac;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  margin: 0 0 10px;
+}
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+.features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee2f6;
+}
+.features li:last-child {
+  border: 0;
+}
+.featureIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #e1ff9a;
+  flex-shrink: 0;
+}
+.featureIcon img {
+  width: 29px;
+  height: 29px;
+}
+.features h4 {
+  color: var(--purple);
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin: 2px 0 8px;
+}
+.features p {
+  color: #542a73;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+.panelText {
+  color: #542a73;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 24px 0;
+  max-width: 70ch;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.experienceStats {
+  display: grid;
+  gap: 24px;
+  margin: 36px 0 0;
+}
+.experienceStats > div {
+  border-bottom: 1px solid #eee2f6;
+  padding-bottom: 24px;
+}
+.experienceStats dt {
+  color: var(--purple);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: clamp(29px, 2.6vw, 40px);
+}
+.experienceStats dd {
+  margin: 10px 0 0;
+  font-size: 15px;
+  color: #744d92;
+}
+@media (min-width: 640px) {
+  .content {
+    padding: 24px;
+  }
+  .features li {
+    gap: 18px;
+  }
+  .featureIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+  }
+  .featureIcon img {
+    width: 36px;
+    height: 36px;
+  }
+  .features h4 {
+    font-size: 18px;
+  }
+  .features p {
+    font-size: 16px;
+  }
+  .experienceStats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    width: min(100% - 72px, 1320px);
+  }
+  .layout {
+    grid-template-columns: minmax(240px, 0.385fr) minmax(0, 1fr);
+  }
+  .profile,
+  .content {
+    min-height: 640px;
+  }
+  .content {
+    padding: 28px 30px;
+  }
+  .toolbar {
+    gap: 14px;
+    justify-content: space-between;
+  }
+  .tabs {
+    gap: 10px;
+  }
+  .tabs button {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+  .bookingLink {
+    padding: 15px 18px;
+    font-size: 14px;
+  }
+  .panel {
+    padding: 0 16px;
+    margin-top: 40px;
+  }
+  .features {
+    margin-top: 22px;
+  }
+}
+@media (min-width: 1280px) {
+  .tabs button {
+    font-size: 16px;
+    padding: 16px 22px;
+  }
+  .bookingLink {
+    font-size: 16px;
+    padding: 18px 22px;
+  }
+}

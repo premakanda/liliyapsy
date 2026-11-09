@@ -1,0 +1,44 @@
+/* Self-contained styles: do not change global theme or other sections. */
+.section {
+  --requests-purple-dark: #35085d;
+  --requests-purple-stroke: #4b168d;
+  --requests-lilac: #f1def9;
+  --requests-lime: #f1fac0;
+  --requests-paper: #fcfafd;
+  --requests-text: #342444;
+  padding: clamp(64px, 8vw, 112px) 0;
+  background: var(--requests-paper);
+}
+.container { width: min(100% - 32px, 1320px); margin-inline: auto; }
+.headingWrap { margin-bottom: clamp(28px, 4vw, 44px); }
+.heading {
+  max-width: 900px; margin: 0;
+  color: var(--requests-purple-dark);
+  font-family: inherit; font-size: clamp(30px, 4vw, 54px); font-weight: 800; line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+.underline { display: block; width: 112px; height: 8px; margin-top: 18px; border-radius: 100px; background: #c6f742; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: stretch; }
+.card {
+  position: relative; min-width: 0; min-height: 264px;
+  padding: clamp(23px, 3vw, 32px); border-radius: 24px;
+  background: var(--requests-lilac); color: var(--requests-text);
+  display: flex; flex-direction: column; align-items: flex-start;
+  border: 1px solid rgb(75 22 141 / 6%);
+  transform: scale(1);
+  transition: transform 260ms cubic-bezier(.22,1,.36,1), box-shadow 260ms ease;
+  box-shadow: 0 2px 12px rgb(53 8 93 / 3%);
+}
+.card:nth-child(even) { background: var(--requests-lime); }
+.iconWrap {
+  width: 70px; height: 70px; display: grid; place-items: center; margin-bottom: 20px;
+}
+.icon { width: 60px; height: 60px; display: block; }
+.cardTitle { color: var(--requests-purple-dark); margin: 0 0 11px; font-size: clamp(19px, 1.5vw, 23px); line-height: 1.2; font-weight: 800; }
+.description { margin: 0; font-size: 15px; line-height: 1.62; overflow-wrap: anywhere; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } .container { width: min(100% - 48px, 1320px); } }
+@media (min-width: 1100px) { .grid { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; } .container { width: min(100% - 64px, 1320px); } }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card:hover { transform: scale(1.015); box-shadow: 0 13px 32px rgb(53 8 93 / 10%); z-index: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; transform: none; } }

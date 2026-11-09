@@ -1,0 +1,94 @@
+brandName: Лилия Янушкевич
+role: психолог
+domain: liliapsi.by
+siteUrl: null
+siteLanguage: ru
+hero:
+  eyebrow: ПСИХОЛОГИЧЕСКИЕ КОНСУЛЬТАЦИИ
+  headline:
+  - Понимать себя.
+  - Менять то, что не работает.
+  - Жить в балансе.
+  description: Помогаю лучше понимать себя, справляться с трудностями и создавать жизнь, в которой больше
+    опоры, энергии и радости.
+  primaryCta: Записаться на консультацию
+  secondaryCta: Как проходит работа
+contacts:
+  phone: null
+  email: null
+  telegramUrl: null
+  instagramUrl: null
+  whatsappUrl: null
+  viberUrl: null
+about:
+  title: Обо мне
+  introduction: Я помогаю людям разобраться в себе, справиться с тревогой, эмоциональными трудностями, болезненным прошлым и проблемами в отношениях.
+  approachLabel: МОЙ ПОДХОД
+  approachTitle: Вместе к понятным и бережным изменениям
+  features:
+    - icon: people
+      title: Со взрослыми и подростками от 13 лет
+      description: Провожу индивидуальные консультации онлайн — из удобного для вас места.
+    - icon: layers
+      title: Внимательное отношение к вашему запросу
+      description: Вместе исследуем, что поддерживает трудности, и подбираем подходящие способы работы.
+    - icon: sprout
+      title: Опора на реальные изменения
+      description: Работаем с привычными реакциями, эмоциями и отношениями, чтобы находить новые решения.
+  educationTitle: Образование и подготовка
+  educationText: Сведения об образовании и документы пока не опубликованы. Вы можете запросить информацию перед записью на консультацию.
+  experienceTitle: Опыт проведения консультаций
+  experienceText: Три года провожу индивидуальные психологические консультации. За это время проведены тысячи сессий. В работе уделяю внимание запросу человека, его обстоятельствам и темпу изменений.
+  sessionsLabel: Тысячи сессий
+booking:
+  title: Записаться на консультацию
+  description: Свяжитесь со мной удобным для вас способом. Коротко расскажите, с каким запросом хотите поработать, и укажите предпочтительное время встречи. Я отвечу вам в течение дня.
+  telegramLabel: Написать в Telegram
+  emailLabel: Написать на почту
+  facebookLabel: Написать в Facebook
+  facebookUrl: null
+  detailsTitle: Как проходит консультация
+  format: онлайн, Google Meet
+  durationMinutes: 75
+  language: русский
+  paymentNote: Консультации проходят онлайн. Оплата удобным для вас способом.
+footer:
+  legalIdentity: Самозанятая Янушкевич Лилия Васильевна
+  taxId: "700755502289"
+  consultationNote: Консультации проходят онлайн.
+  schedule: Понедельник – пятница, с 10:00 до 19:00.
+  telegramHandle: "@liliyapsy"
+  telegramUrl: https://t.me/liliyapsy
+  email: liliyapsy@gmail.com
+  copyright: "© 2027 Лилия Янушкевич"
+  informationNotice: Сайт носит информационный характер
+  topics:
+    - Депрессия
+    - Тревожность
+    - Травмы
+    - Отношения
+    - Самооценка
+    - Расстройства
+    - Кризисы
+    - Панические атаки
+    - Выгорание
+consultations:
+  format: null
+  durationMinutes: null
+  priceAmount: null
+  currency: null
+  bookingUrl: null
+  timeZone: null
+  availability: null
+professional:
+  education: null
+  credentials: null
+  experienceYears: 3
+  jurisdiction: null
+  worksWithMinors: true
+  offersCouples: null
+publication:
+  servicesVerified: false
+  legalReviewed: false
+  portraitIsAuthentic: false
+  reviewsApproved: false
