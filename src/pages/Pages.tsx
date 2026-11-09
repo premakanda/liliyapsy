@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import { RequestsSection } from "../components/RequestsSection/RequestsSection";
 import { WorkProcess } from "../components/WorkProcess/WorkProcess";
-import { getPage, preview, site, topics, articles } from "../lib/content";
+import { getPage, preview, site, topics } from "../lib/content";
 import {
   About,
   Approach,
@@ -33,9 +33,13 @@ export function Page({ path }: { path: string }) {
       </>
     );
   const { article, topic } = page;
+  const isBlog = path === "/articles/" || Boolean(article);
+  const isArticleCatalogue = path === "/articles/";
   return (
     <>
-      <div className={styles.pageHero}>
+      <div
+        className={`${styles.pageHero} ${isBlog ? styles.blogHero : ""} ${isArticleCatalogue ? styles.catalogueHero : ""}`}
+      >
         <div className="container">
           <nav aria-label="Хлебные крошки" className={styles.breadcrumbs}>
             <a href="/">Главная</a>
@@ -54,9 +58,9 @@ export function Page({ path }: { path: string }) {
             )}
             <span aria-current="page">{page.title}</span>
           </nav>
-          <p className="eyebrow">ЛИЛИЯ ЯНУШКЕВИЧ · ПСИХОЛОГ</p>
-          <h1>{page.title}</h1>
-          {!article && !topic && <Button />}
+          {!isBlog && <p className="eyebrow">ЛИЛИЯ ЯНУШКЕВИЧ · ПСИХОЛОГ</p>}
+          {!isArticleCatalogue && <h1>{page.title}</h1>}
+          {!isBlog && !article && !topic && <Button />}
         </div>
       </div>
       {!page.found ? (
@@ -73,20 +77,6 @@ export function Page({ path }: { path: string }) {
                 авторство и содержание требуют согласования.
               </Notice>
             )}
-            <p className={styles.articleMeta}>
-              {article.category}
-              {article.publishedAt && (
-                <>
-                  {" "}
-                  ·{" "}
-                  <time dateTime={article.publishedAt}>
-                    {new Date(article.publishedAt).toLocaleDateString("ru-RU", {
-                      timeZone: "UTC",
-                    })}
-                  </time>
-                </>
-              )}
-            </p>
             <p className={styles.lead}>{article.description}</p>
             <nav aria-label="Содержание статьи" className={styles.toc}>
               <strong>В этой статье</strong>
@@ -109,33 +99,6 @@ export function Page({ path }: { path: string }) {
             >
               {article.content}
             </ReactMarkdown>
-            <div className={styles.author}>
-              <strong>
-                {article.published
-                  ? article.author
-                  : "Лилия Янушкевич · авторство на проверке"}
-              </strong>
-              <p>
-                Информационный материал. Он не заменяет индивидуальную
-                консультацию или обращение к врачу.
-              </p>
-            </div>
-            <h2>Продолжить знакомство</h2>
-            <div className={styles.related}>
-              {articles
-                .filter(
-                  (a) =>
-                    a.slug !== article.slug && a.category === article.category,
-                )
-                .slice(0, 2)
-                .map((a) => (
-                  <a href={`/articles/${a.slug}/`} key={a.slug}>
-                    {a.title} →
-                  </a>
-                ))}
-              <a href="/topics/">Темы психологической поддержки →</a>
-              <a href="/services/">Формат консультации →</a>
-            </div>
           </article>
         </Section>
       ) : topic ? (

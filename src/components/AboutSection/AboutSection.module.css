@@ -94,9 +94,10 @@
   display: grid;
   place-items: center;
   background: #d1f477;
+  transition: background-color 260ms ease;
 }
 .socials > a:hover {
-  background: var(--lime);
+  background: #d5ff70;
 }
 .socials img {
   width: 25px;
@@ -148,6 +149,7 @@
   background: var(--lilac);
 }
 .bookingLink {
+  transition: background-color 260ms ease;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -162,7 +164,7 @@
   text-decoration: none;
 }
 .bookingLink:hover {
-  background: #d4fc77;
+  background: #d5ff70;
 }
 .bookingLink img {
   width: 20px;

@@ -65,8 +65,8 @@ export interface SiteContent {
       title: string;
       description: string;
       telegramLabel: string;
-      emailLabel: string;
       facebookLabel: string;
+      instagramLabel: string;
       facebookUrl: string | null;
       detailsTitle: string;
       format: string;

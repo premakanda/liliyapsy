@@ -6,6 +6,23 @@
   max-width: 1000px;
   margin: 28px 0 30px;
 }
+.blogHero h1 {
+  position: relative;
+  width: fit-content;
+  padding-bottom: 22px;
+  margin-bottom: 0;
+}
+.blogHero h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(180px, 70%);
+  height: 7px;
+  border-radius: 999px;
+  background: var(--lime);
+  transform: rotate(-1deg);
+}
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
@@ -17,6 +34,12 @@
 }
 .breadcrumbs a {
   text-decoration: none;
+}
+.pageHero.catalogueHero {
+  padding: 24px 0;
+}
+.catalogueHero .breadcrumbs {
+  margin-bottom: 0;
 }
 .prose {
   max-width: 760px;
@@ -36,10 +59,6 @@
   font-size: 21px;
   line-height: 1.7;
 }
-.articleMeta {
-  font-size: 12px;
-  color: var(--muted);
-}
 .toc {
   padding: 24px;
   background: var(--lilac-light);
@@ -54,16 +73,6 @@
 }
 .toc a:hover {
   text-decoration: underline;
-}
-.author {
-  margin-top: 40px;
-  background: #f3fcca;
-  padding: 24px;
-  border-radius: 20px;
-  font-size: 14px;
-}
-.author p {
-  margin-bottom: 0;
 }
 .related {
   display: grid;

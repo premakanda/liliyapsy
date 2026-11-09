@@ -44,8 +44,8 @@ booking:
   title: Записаться на консультацию
   description: Свяжитесь со мной удобным для вас способом. Коротко расскажите, с каким запросом хотите поработать, и укажите предпочтительное время встречи. Я отвечу вам в течение дня.
   telegramLabel: Написать в Telegram
-  emailLabel: Написать на почту
   facebookLabel: Написать в Facebook
+  instagramLabel: Написать в Instagram
   facebookUrl: null
   detailsTitle: Как проходит консультация
   format: онлайн, Google Meet
@@ -61,7 +61,7 @@ footer:
   telegramUrl: https://t.me/liliyapsy
   email: liliyapsy@gmail.com
   copyright: "© 2027 Лилия Янушкевич"
-  informationNotice: Сайт носит информационный характер
+  informationNotice: Сайт носит информационный характер. Статьи защищены авторским правом.
   topics:
     - Депрессия
     - Тревожность

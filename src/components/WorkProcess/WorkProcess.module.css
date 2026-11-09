@@ -44,6 +44,8 @@
   padding: 0;
 }
 .card {
+  cursor: pointer;
+  isolation: isolate;
   position: relative;
   z-index: 1;
   min-width: 0;
@@ -55,10 +57,28 @@
     transform 260ms ease,
     box-shadow 260ms ease;
 }
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at bottom right,
+    rgb(255 255 255 / 92%),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 840ms cubic-bezier(.45,0,.2,1);
+}
 .card:nth-child(even) {
   background: var(--lime-light);
 }
 .number {
+  position: relative;
+  isolation: isolate;
+  width: fit-content;
   display: block;
   margin-bottom: 24px;
   color: var(--purple);
@@ -67,6 +87,17 @@
   line-height: 1;
   letter-spacing: -0.035em;
   font-variant-numeric: tabular-nums;
+  transition: text-shadow 840ms cubic-bezier(.45,0,.2,1);
+}
+.number::before {
+  content: "";
+  position: absolute;
+  inset: -12px -18px;
+  z-index: -1;
+  background: radial-gradient(ellipse, rgb(255 255 255 / 90%), transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 840ms cubic-bezier(.45,0,.2,1);
 }
 .title {
   min-height: 2.4em;
@@ -113,16 +144,33 @@
     pointer-events: none;
   }
 }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+@media (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
   .card:hover {
     transform: scale(1.015);
     box-shadow: 0 12px 28px rgb(53 8 93 / 10%);
     z-index: 2;
   }
 }
+@media (any-hover: hover) and (any-pointer: fine) {
+  .card:hover::after,
+  .card:hover .number::before {
+    opacity: 1;
+  }
+  .card:hover .number {
+    text-shadow: 0 0 18px rgb(255 255 255 / 85%);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;
     transform: none;
+  }
+  .card::after,
+  .number::before {
+    /* Owner-requested smooth lighting, including with OS animations disabled. */
+    transition: opacity 840ms cubic-bezier(.45,0,.2,1) !important;
+  }
+  .number {
+    transition: text-shadow 840ms cubic-bezier(.45,0,.2,1) !important;
   }
 }

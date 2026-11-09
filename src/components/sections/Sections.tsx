@@ -319,41 +319,44 @@ export function Principles() {
   );
 }
 export function ArticlesPreview({ full = false }: { full?: boolean }) {
-  const [category, setCategory] = useState("Все");
-  const categories = ["Все", ...new Set(articles.map((a) => a.category))];
-  const shown = articles.filter(
-    (a) => category === "Все" || a.category === category,
-  );
+  const articleIcons = [
+    "sprout",
+    "hearts",
+    "brain",
+    "layers",
+    "people",
+    "bolt",
+    "knot",
+    "battery",
+  ];
+  const excerpt = (content: string) =>
+    content
+      .replace(/^#{1,6}\s+.*$/gm, "")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/[*_`>]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 1200);
   return (
-    <Section id="articles" title={full ? "Статьи" : "Лучше понимать себя"}>
-      {full && articles.length > 0 && (
-        <div className={styles.filters} aria-label="Темы статей">
-          {categories.map((c) => (
-            <button
-              key={c}
-              aria-pressed={category === c}
-              onClick={() => setCategory(c)}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      )}
+    <Section
+      id="articles"
+      title={full ? undefined : "Лучше понимать себя"}
+      className={!full ? styles.articlesSection : undefined}
+    >
       <div className={styles.articleGrid}>
-        {(full ? shown : shown.slice(0, 3)).map((a, i) => (
+        {(full ? articles : articles.slice(0, 3)).map((a, i) => (
           <a
             key={a.slug}
             className={styles.articleCard}
             href={`/articles/${a.slug}/`}
           >
             <div className={styles.articleArt}>
-              <Icon name={["sprout", "heart", "brain"][i % 3]} />
-              <span>ЗАМЕТКИ О ВАЖНОМ</span>
+              <Icon name={articleIcons[i % articleIcons.length]} />
             </div>
             <div className={styles.articleBody}>
-              <span className={styles.caption}>{a.category}</span>
               <h3>{a.title}</h3>
-              <p>{a.description}</p>
+              <p>{excerpt(a.content)}</p>
               <span className={styles.readMore}>
                 Читать статью <span aria-hidden="true">↗</span>
               </span>
@@ -369,7 +372,7 @@ export function ArticlesPreview({ full = false }: { full?: boolean }) {
       )}
       {!full && articles.length > 0 && (
         <div className={styles.center}>
-          <Button href="/articles/" secondary>
+          <Button href="/articles/">
             Все статьи
           </Button>
         </div>
@@ -449,66 +452,83 @@ export function FinalCTA() {
       className={styles.finalCta}
       aria-labelledby="booking-title"
     >
-      <div className={`container ${styles.bookingGrid}`}>
-        <div className={styles.bookingIntro}>
-          <h2 id="booking-title">{booking.title}</h2>
-          <p>{booking.description}</p>
-          <div className={styles.bookingActions}>
-            <a
-              className={styles.contactButton}
-              href={site.footer.telegramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="telegram" />
-              {booking.telegramLabel}
-            </a>
-            <a
-              className={`${styles.contactButton} ${styles.contactSecondary}`}
-              href={`mailto:${site.footer.email}`}
-            >
-              <Icon name="mail" />
-              {booking.emailLabel}
-            </a>
-            {booking.facebookUrl ? (
+      <div className="container">
+        <div className={styles.bookingGrid}>
+          <div className={styles.bookingIntro}>
+            <h2 id="booking-title" className={styles.bookingHeading}>
+              {booking.title}
+            </h2>
+            <p>{booking.description}</p>
+            <div className={styles.bookingActions}>
               <a
-                className={`${styles.contactButton} ${styles.contactSecondary}`}
-                href={booking.facebookUrl}
+                className={styles.contactButton}
+                href={site.footer.telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icon name="facebook" />
-                {booking.facebookLabel}
+                <Icon name="telegram" />
+                {booking.telegramLabel}
               </a>
-            ) : (
-              <button
-                className={`${styles.contactButton} ${styles.contactSecondary}`}
-                disabled
-                title="Ссылка на Facebook пока не добавлена"
-              >
-                <Icon name="facebook" />
-                {booking.facebookLabel}
-              </button>
-            )}
+              {booking.facebookUrl ? (
+                <a
+                  className={`${styles.contactButton} ${styles.contactSecondary}`}
+                  href={booking.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name="facebook" />
+                  {booking.facebookLabel}
+                </a>
+              ) : (
+                <button
+                  className={`${styles.contactButton} ${styles.contactSecondary}`}
+                  disabled
+                  title="Ссылка на Facebook пока не добавлена"
+                >
+                  <Icon name="facebook" />
+                  {booking.facebookLabel}
+                </button>
+              )}
+              {site.contacts.instagramUrl ? (
+                <a
+                  className={`${styles.contactButton} ${styles.contactSecondary}`}
+                  href={site.contacts.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name="instagram" />
+                  {booking.instagramLabel}
+                </a>
+              ) : (
+                <button
+                  className={`${styles.contactButton} ${styles.contactSecondary}`}
+                  disabled
+                  title="Ссылка на Instagram пока не добавлена"
+                >
+                  <Icon name="instagram" />
+                  {booking.instagramLabel}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={styles.consultationDetails}>
-          <h3>{booking.detailsTitle}</h3>
-          <dl>
-            <div>
-              <dt>Формат</dt>
-              <dd>{booking.format}</dd>
-            </div>
-            <div>
-              <dt>Продолжительность</dt>
-              <dd>{booking.durationMinutes} минут</dd>
-            </div>
-            <div>
-              <dt>Язык</dt>
-              <dd>{booking.language}</dd>
-            </div>
-          </dl>
-          <p>{booking.paymentNote}</p>
+          <div className={styles.consultationDetails}>
+            <h3>{booking.detailsTitle}</h3>
+            <dl>
+              <div>
+                <dt>Формат</dt>
+                <dd>{booking.format}</dd>
+              </div>
+              <div>
+                <dt>Продолжительность</dt>
+                <dd>{booking.durationMinutes} минут</dd>
+              </div>
+              <div>
+                <dt>Язык</dt>
+                <dd>{booking.language}</dd>
+              </div>
+            </dl>
+            <p>{booking.paymentNote}</p>
+          </div>
         </div>
       </div>
     </section>

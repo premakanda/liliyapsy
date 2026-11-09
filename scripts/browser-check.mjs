@@ -23,7 +23,7 @@ await mkdir(qaDirectory, { recursive: true });
 async function open(path = "/") {
   await page.goto(new URL(path, devOrigin).href);
   await page.evaluate(() => document.fonts.ready);
-  await page.locator("h1").waitFor();
+  await page.locator(path === "/articles/" ? "#articles" : "h1").waitFor();
 }
 async function checkOverflow(label) {
   if (
@@ -135,15 +135,8 @@ try {
     content.articles.length
   )
     throw new Error("Article catalogue");
-  const category = content.articles[0]?.category;
-  if (category) {
-    await page.getByRole("button", { name: category, exact: true }).click();
-    if (
-      (await page.locator('#articles a[href^="/articles/"] h3').count()) !==
-      content.articles.filter((article) => article.category === category).length
-    )
-      throw new Error("Article category filter");
-  }
+  if (await page.locator('#articles button').count())
+    throw new Error("Article catalogue must have no category filters");
 
   const paths = [
     "/about/",
@@ -196,11 +189,15 @@ try {
     throw new Error("Static HTML missing or not a preview");
   for (const path of [
     "/does-not-exist/",
-    `/articles/${content.articles[0].slug}/`,
     `/topics/${content.topics[0].slug}/`,
   ]) {
     if ((await fetch(new URL(path, staticOrigin))).status !== 404)
       throw new Error(`Static 404/draft isolation failed: ${path}`);
+  }
+  for (const article of content.articles.filter((item) => item.published)) {
+    const response = await fetch(new URL(`/articles/${article.slug}/`, staticOrigin));
+    if (response.status !== 200 || !(await response.text()).includes("<h1>"))
+      throw new Error(`Published static article missing: ${article.slug}`);
   }
   if (errors.length) throw new Error(errors.join("\n"));
   await writeFile(
@@ -213,7 +210,7 @@ try {
         images: "passed",
         tabs: "passed",
         faq: "passed",
-        articleFilters: "passed",
+        articleCatalogue: "passed",
         accessibility: "passed",
         staticHtml: "passed",
         draftIsolation: "passed",

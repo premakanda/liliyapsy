@@ -20,13 +20,14 @@
 .underline { display: block; width: 112px; height: 8px; margin-top: 18px; border-radius: 100px; background: #c6f742; }
 .grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: stretch; }
 .card {
+  cursor: pointer;
   position: relative; min-width: 0; min-height: 264px;
   padding: clamp(23px, 3vw, 32px); border-radius: 24px;
   background: var(--requests-lilac); color: var(--requests-text);
   display: flex; flex-direction: column; align-items: flex-start;
   border: 1px solid rgb(75 22 141 / 6%);
   transform: scale(1);
-  transition: transform 260ms cubic-bezier(.22,1,.36,1), box-shadow 260ms ease;
+  transition: transform 840ms cubic-bezier(.45,0,.2,1), box-shadow 840ms ease;
   box-shadow: 0 2px 12px rgb(53 8 93 / 3%);
 }
 .card:nth-child(even) { background: var(--requests-lime); }
@@ -38,7 +39,12 @@
 .description { margin: 0; font-size: 15px; line-height: 1.62; overflow-wrap: anywhere; }
 @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } .container { width: min(100% - 48px, 1320px); } }
 @media (min-width: 1100px) { .grid { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; } .container { width: min(100% - 64px, 1320px); } }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .card:hover { transform: scale(1.015); box-shadow: 0 13px 32px rgb(53 8 93 / 10%); z-index: 1; }
+@media (any-hover: hover) and (any-pointer: fine) {
+  .card:hover { transform: scale(1.04); box-shadow: 0 13px 32px rgb(53 8 93 / 10%); z-index: 1; }
 }
-@media (prefers-reduced-motion: reduce) { .card { transition: none; transform: none; } }
+/* The owner explicitly requested smooth hover even with OS animations disabled. */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: transform 840ms cubic-bezier(.45,0,.2,1), box-shadow 840ms ease !important;
+  }
+}

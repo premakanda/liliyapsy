@@ -19,13 +19,10 @@
   font-weight: 800;
   text-decoration: none;
   line-height: 1.45;
-  transition:
-    background 0.2s,
-    transform 0.2s;
+  transition: background-color 260ms ease;
 }
 .button:hover {
   background: #d5ff70;
-  transform: translateY(-2px);
 }
 .secondary {
   background: transparent;

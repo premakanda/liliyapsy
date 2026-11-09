@@ -17,8 +17,8 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("../../assets/illustrations/hero-wash.svg") left bottom / 100% 100%
-    no-repeat;
+  background: url("../../assets/illustrations/hero-wash.svg") left bottom / 100%
+    100% no-repeat;
 }
 .heroInner {
   position: relative;
@@ -48,7 +48,8 @@
   position: absolute;
   z-index: -1;
   inset: 0 -8px -2px;
-  background: url("../../assets/illustrations/hero-brush.svg") center / 100% 100% no-repeat;
+  background: url("../../assets/illustrations/hero-brush.svg") center / 100%
+    100% no-repeat;
   transform: rotate(-0.7deg);
 }
 .heroDescription {
@@ -426,7 +427,14 @@
   gap: 24px;
   margin-top: 30px;
 }
+.articlesSection > div > h2 {
+  margin-bottom: clamp(44px, 5vw, 64px);
+}
+.articlesSection .articleGrid {
+  margin-top: 0;
+}
 .articleCard {
+  cursor: pointer;
   background: white;
   border: 1px solid #eee2f4;
   border-radius: 24px;
@@ -434,10 +442,24 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s;
+  transition:
+    transform 840ms cubic-bezier(.45,0,.2,1),
+    box-shadow 840ms ease;
 }
-.articleCard:hover {
-  transform: translateY(-4px);
+@media (any-hover: hover) and (any-pointer: fine) {
+  .articleCard:hover,
+  .articleCard:focus-visible {
+    transform: translateY(-20px);
+    box-shadow: 0 16px 32px rgb(53 8 93 / 12%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .articleCard {
+    /* Owner-requested exception, scoped to article hover transitions. */
+    transition:
+      transform 840ms cubic-bezier(.45,0,.2,1),
+      box-shadow 840ms ease !important;
+  }
 }
 .articleArt {
   position: relative;
@@ -477,6 +499,11 @@
   letter-spacing: -0.02em;
 }
 .articleBody p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
   font-size: 14px;
   line-height: 1.7;
   margin-top: 0;
@@ -578,22 +605,21 @@
   display: grid;
   gap: 32px;
 }
-.bookingIntro h2 {
+.bookingHeading {
   position: relative;
   width: fit-content;
   padding-bottom: 20px;
   color: white;
   margin: 0 0 24px;
   max-width: none;
-  font-size: clamp(18px, 5.5cqi, 38px);
-  white-space: nowrap;
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 850;
   text-align: left;
 }
 .bookingIntro {
-  container-type: inline-size;
   min-width: 0;
 }
-.bookingIntro h2::after {
+.bookingHeading::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -627,12 +653,12 @@
   background: var(--lime);
   color: var(--purple);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   line-height: 1.5;
   transition:
-    background 0.2s,
-    border-color 0.2s;
+    background-color 260ms ease,
+    border-color 260ms ease;
 }
 .contactButton > img {
   width: 25px;
